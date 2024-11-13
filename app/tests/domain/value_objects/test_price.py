@@ -19,3 +19,9 @@ def test_price_equality():
   price_2 = Price(value=11.45)
 
   assert price_1 == price_2
+
+def test_price_inequality():
+  price_1 = Price(value=10.45)
+  price_2 = Price(value=11.45)
+
+  assert price_1 != price_2
