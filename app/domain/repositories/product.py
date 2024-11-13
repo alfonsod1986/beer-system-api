@@ -20,5 +20,5 @@ class ProductRepository(ABC):
     raise NotImplemented
   
   @abstractmethod
-  def delete(self, id: int) -> None:
+  def delete(self, id: int) -> bool:
     raise NotImplemented
