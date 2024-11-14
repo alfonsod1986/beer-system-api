@@ -40,14 +40,14 @@ def test_get_product_by_id(product_in_memory_repository):
 def test_create_product():
   repository = ProductInMemoryRepository()
 
-  product = ProductEntity(id=5, name="Indio", price=Price(22.99), stock=Stock(70))
+  product = ProductEntity(name="Indio", price=Price(22.99), stock=Stock(70))
 
   created = repository.create(product)
 
-  assert repository.next_id() == 6
+  assert repository.next_id() == 2
   assert created == product
 
-  founded = repository.get_by_id(5)
+  founded = repository.get_by_id(1)
 
   assert isinstance(founded, ProductEntity)
   assert founded == created
@@ -96,8 +96,8 @@ def test_next_id_with_products():
 def test_next_id_after_create():
   repository = ProductInMemoryRepository()
 
-  product = ProductEntity(id=5, name="Indio", price=Price(22.99), stock=Stock(70))
+  product = ProductEntity(name="Indio", price=Price(22.99), stock=Stock(70))
 
   repository.create(product)
 
-  assert repository.next_id() == 6
+  assert repository.next_id() == 2
