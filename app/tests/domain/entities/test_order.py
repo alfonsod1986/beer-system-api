@@ -24,6 +24,28 @@ def test_order_item_invalid_quantity(test_input, expected):
     OrderItem(product_id=1, quantity=Quantity(value=test_input))
   assert str(exc_info.value) == expected
 
+def test_order_item_to_dict():
+  item = OrderItem(product_id=1, quantity=Quantity(10))
+  item_dict = item.to_dict()
+
+  assert item_dict == {
+    "product_id": 1,
+    "quantity": 10,
+  }
+
+def test_order_item_from_dict():
+  item_dict = {
+    "product_id": 1,
+    "quantity": 10,
+  }
+
+  item = OrderItem.from_dict(item_dict)
+
+  assert isinstance(item, OrderItem) == True
+  assert item.product_id == item_dict["product_id"]
+  assert item.quantity.value == item_dict["quantity"]
+  assert item.to_dict() == item_dict
+
 def test_valid_order(order_items):
   order = Order(id=1, items=order_items)
 
@@ -34,3 +56,39 @@ def test_valid_order(order_items):
   assert order.subtotal == 0.0
   assert order.taxes == 0.0
   assert order.total == 0.0
+
+def test_order_to_dict(order_items):
+  order = Order(id=1, items=order_items)
+  order_dict = order.to_dict()
+
+  assert order_dict == {
+    "id": 1,
+    "items": [item.to_dict() for item in order_items],
+    "discount": 0.0,
+    "tax_rate": 0.15,
+    "subtotal": 0.0,
+    "taxes": 0.0,
+    "total": 0.0
+  }
+
+def test_order_from_dict(order_items):
+  order_dict = {
+    "id": 1,
+    "items": [item.to_dict() for item in order_items],
+    "discount": 0.0,
+    "tax_rate": 0.15,
+    "subtotal": 0.0,
+    "taxes": 0.0,
+    "total": 0.0
+  }
+
+  order = Order.from_dict(order_dict)
+
+  assert isinstance(order, Order) == True
+  assert len(order.items) == len(order_dict["items"])
+  assert order.items == order_items
+  assert order.discount == order_dict["discount"]
+  assert order.tax_rate == order_dict["tax_rate"]
+  assert order.subtotal == order_dict["subtotal"]
+  assert order.taxes == order_dict["taxes"]
+  assert order.total == order_dict["total"]
