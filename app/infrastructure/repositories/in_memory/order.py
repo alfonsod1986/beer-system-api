@@ -19,6 +19,9 @@ class OrderInMemoryRepository(OrderRepository):
   def get_all(self) -> List[OrderEntity]:
     return self.__orders
   
+  def get_by_id(self, id: int) -> OrderEntity | None:
+    return next((order for order in self.__orders if order.id == id), None)
+  
   def next_id(self) -> int:
     self.__last_id += 1
     return self.__last_id
