@@ -5,7 +5,7 @@ from typing import List
 from fastapi.testclient import TestClient
 from unittest.mock import Mock
 from app.domain.entities.product import ProductEntity
-from app.domain.entities.order import Order
+from app.domain.entities.order import OrderEntity
 from app.infrastructure.rest.fastapi.api import create_app
 
 
@@ -16,10 +16,10 @@ def domain_products() -> List[ProductEntity]:
     return [ProductEntity.from_dict(data) for data in json.load(file)]
 
 @pytest.fixture
-def domain_orders() -> List[Order]:
-  filepath = pathlib.Path("app/tests/data/products.json") 
+def domain_orders() -> List[OrderEntity]:
+  filepath = pathlib.Path("app/tests/data/orders.json") 
   with open(filepath, "r") as file:
-    return [ProductEntity.from_dict(data) for data in json.load(file)]
+    return [OrderEntity.from_dict(data) for data in json.load(file)]
 
 @pytest.fixture
 def mock_product_repository(domain_products):
