@@ -5,11 +5,18 @@ from typing import List
 from fastapi.testclient import TestClient
 from unittest.mock import Mock
 from app.domain.entities.product import ProductEntity
+from app.domain.entities.order import Order
 from app.infrastructure.rest.fastapi.api import create_app
 
 
 @pytest.fixture
 def domain_products() -> List[ProductEntity]:
+  filepath = pathlib.Path("app/tests/data/products.json") 
+  with open(filepath, "r") as file:
+    return [ProductEntity.from_dict(data) for data in json.load(file)]
+
+@pytest.fixture
+def domain_orders() -> List[Order]:
   filepath = pathlib.Path("app/tests/data/products.json") 
   with open(filepath, "r") as file:
     return [ProductEntity.from_dict(data) for data in json.load(file)]
