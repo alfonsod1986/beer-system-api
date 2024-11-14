@@ -1,14 +1,14 @@
 import random
 import pytest
-from app.domain.entities.order import OrderItem, Order
+from app.domain.entities.order import OrderItemEntity, OrderEntity
 from app.domain.value_objects.quantity import Quantity
 
 @pytest.fixture
 def order_items():
-  return [OrderItem(product_id=random.randint(1, 100), quantity=Quantity(random.randint(1, 100))) for _ in range(10)]
+  return [OrderItemEntity(product_id=random.randint(1, 100), quantity=Quantity(random.randint(1, 100))) for _ in range(10)]
 
 def test_valid_order_item():
-  item = OrderItem(product_id=1, quantity=Quantity(10))
+  item = OrderItemEntity(product_id=1, quantity=Quantity(10))
 
   assert item.product_id == 1
   assert item.quantity.value == 10
@@ -21,11 +21,11 @@ def test_valid_order_item():
 ])
 def test_order_item_invalid_quantity(test_input, expected):
   with pytest.raises(ValueError) as exc_info:
-    OrderItem(product_id=1, quantity=Quantity(value=test_input))
+    OrderItemEntity(product_id=1, quantity=Quantity(value=test_input))
   assert str(exc_info.value) == expected
 
 def test_order_item_to_dict():
-  item = OrderItem(product_id=1, quantity=Quantity(10))
+  item = OrderItemEntity(product_id=1, quantity=Quantity(10))
   item_dict = item.to_dict()
 
   assert item_dict == {
@@ -39,15 +39,15 @@ def test_order_item_from_dict():
     "quantity": 10,
   }
 
-  item = OrderItem.from_dict(item_dict)
+  item = OrderItemEntity.from_dict(item_dict)
 
-  assert isinstance(item, OrderItem) == True
+  assert isinstance(item, OrderItemEntity) == True
   assert item.product_id == item_dict["product_id"]
   assert item.quantity.value == item_dict["quantity"]
   assert item.to_dict() == item_dict
 
 def test_valid_order(order_items):
-  order = Order(id=1, items=order_items)
+  order = OrderEntity(id=1, items=order_items)
 
   assert order.id == 1
   assert len(order.items) == 10
@@ -58,7 +58,7 @@ def test_valid_order(order_items):
   assert order.total == 0.0
 
 def test_order_to_dict(order_items):
-  order = Order(id=1, items=order_items)
+  order = OrderEntity(id=1, items=order_items)
   order_dict = order.to_dict()
 
   assert order_dict == {
@@ -82,9 +82,9 @@ def test_order_from_dict(order_items):
     "total": 0.0
   }
 
-  order = Order.from_dict(order_dict)
+  order = OrderEntity.from_dict(order_dict)
 
-  assert isinstance(order, Order) == True
+  assert isinstance(order, OrderEntity) == True
   assert len(order.items) == len(order_dict["items"])
   assert order.items == order_items
   assert order.discount == order_dict["discount"]

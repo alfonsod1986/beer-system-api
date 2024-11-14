@@ -3,7 +3,7 @@ from typing import List
 from app.domain.value_objects.quantity import Quantity
 
 @dataclass
-class OrderItem:
+class OrderItemEntity:
   product_id: int
   quantity: Quantity
 
@@ -21,9 +21,9 @@ class OrderItem:
     }
 
 @dataclass(kw_only=True)
-class Order:
+class OrderEntity:
   id: int = None
-  items: List[OrderItem]
+  items: List[OrderItemEntity]
   discount: float = 0.0
   tax_rate: float = 0.15
   subtotal: float = 0.0
@@ -34,7 +34,7 @@ class Order:
   def from_dict(cls, data: dict):
     data_copy = data.copy()
 
-    data_copy["items"] = [OrderItem.from_dict(item) for item in data["items"]]
+    data_copy["items"] = [OrderItemEntity.from_dict(item) for item in data["items"]]
     return cls(**data_copy)
   
   def to_dict(self) -> dict:
