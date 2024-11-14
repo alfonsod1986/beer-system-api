@@ -24,6 +24,7 @@ class ProductInMemoryRepository(ProductRepository):
     return next((product for product in self.__products if product.id == id), None)
   
   def create(self, product: ProductEntity) -> ProductEntity:
+    product.id = self.next_id()
     self.__products.append(product)
     self.__last_id = max(self.__last_id, product.id)
     return product
