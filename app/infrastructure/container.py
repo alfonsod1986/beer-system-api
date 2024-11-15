@@ -7,6 +7,7 @@ from app.domain.use_cases.product.create import CreateProductUseCase
 from app.domain.use_cases.product.update import UpdateProductUseCase
 from app.domain.use_cases.product.delete import DeleteProductUseCase
 from app.domain.use_cases.order.get_all import GetAllOrdersUseCase
+from app.domain.use_cases.order.get_by_id import GetOrderByIdUseCase
 from app.application.services.product import ProductService
 from app.application.services.order import OrderService
 
@@ -56,6 +57,11 @@ class Container(containers.DeclarativeContainer):
     repository=order_repository,
   )
 
+  get_order_by_id_use_case = providers.Factory(
+    GetOrderByIdUseCase,
+    repository=order_repository,
+  )
+
   #Services
   product_service = providers.Factory(
     ProductService,
@@ -69,4 +75,5 @@ class Container(containers.DeclarativeContainer):
   order_service = providers.Factory(
     OrderService,
     get_all_orders_use_case=get_all_orders_use_case,
+    get_order_by_id_use_case=get_order_by_id_use_case,
   )
