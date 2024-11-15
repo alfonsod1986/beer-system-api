@@ -32,7 +32,7 @@ def product_items():
 
 @pytest.fixture
 def round_items(product_items):
-  created = datetime.strptime("2024-11-15 02:50:00.366375", "%Y-%m-%d %H:%M:%S.%f")
+  created = datetime.strptime("2024-11-15T05:53:42.900906Z", "%Y-%m-%dT%H:%M:%S.%fZ")
   return [
     RoundItemEntity(
       created=created,
@@ -130,7 +130,7 @@ def test_product_item_from_dict():
   assert item.to_dict() == item_dict
 
 def test_valid_round_item(product_items):
-  created = datetime.strptime("2024-11-15 02:50:00.366375", "%Y-%m-%d %H:%M:%S.%f")
+  created = datetime.strptime("2024-11-15T05:53:42.900906Z", "%Y-%m-%dT%H:%M:%S.%fZ")
   item = RoundItemEntity(
     created=created,
     items=product_items
@@ -140,7 +140,7 @@ def test_valid_round_item(product_items):
   assert item.items == product_items
 
 def test_round_item_to_dict(product_items):
-  created = datetime.strptime("2024-11-15 02:50:00.366375", "%Y-%m-%d %H:%M:%S.%f")
+  created = datetime.strptime("2024-11-15T05:53:42.900906Z", "%Y-%m-%dT%H:%M:%S.%fZ")
   item = RoundItemEntity(
     created=created,
     items=product_items
@@ -148,20 +148,20 @@ def test_round_item_to_dict(product_items):
   item_dict = item.to_dict()
 
   assert item_dict == {
-    "created": "2024-11-15 02:50:00.366375",
+    "created": "2024-11-15T05:53:42.900906Z",
     "items": [p_item.to_dict() for p_item in product_items]
   }
 
 def test_round_item_from_dict(product_items):
   item_dict = {
-    "created": "2024-11-15 02:50:00.366375",
+    "created": "2024-11-15T05:53:42.900906Z",
     "items": [p_item.to_dict() for p_item in product_items]
   }
 
   item = RoundItemEntity.from_dict(item_dict)
 
   assert isinstance(item, RoundItemEntity) == True
-  assert item.created == datetime.strptime("2024-11-15 02:50:00.366375", "%Y-%m-%d %H:%M:%S.%f")
+  assert item.created == datetime.strptime("2024-11-15T05:53:42.900906Z", "%Y-%m-%dT%H:%M:%S.%fZ")
   assert item.items == product_items
   assert item.to_dict() == item_dict
 
@@ -177,7 +177,7 @@ def test_valid_order(order_items, round_items):
   assert order.total == 0.0
 
 def test_order_to_dict(order_items, round_items):
-  created = datetime.strptime("2024-11-15 02:50:00.366375", "%Y-%m-%d %H:%M:%S.%f")
+  created = datetime.strptime("2024-11-15T05:53:42.900906Z", "%Y-%m-%dT%H:%M:%S.%fZ")
   order = OrderEntity(id=1, created=created, items=order_items, rounds=round_items)
   order_dict = order.to_dict()
 
@@ -185,7 +185,7 @@ def test_order_to_dict(order_items, round_items):
 
   assert order_dict == {
     "id": 1,
-    "created": "2024-11-15 02:50:00.366375",
+    "created": "2024-11-15T05:53:42.900906Z",
     "paid": False,
     "items": [item.to_dict() for item in order_items],
     "rounds": [item.to_dict() for item in round_items],
@@ -199,7 +199,7 @@ def test_order_to_dict(order_items, round_items):
 def test_order_from_dict(order_items, round_items):
   order_dict = {
     "id": 1,
-    "created": "2024-11-15 02:50:00.366375",
+    "created": "2024-11-15T05:53:42.900906Z",
     "items": [item.to_dict() for item in order_items],
     "rounds": [r_item.to_dict() for r_item in round_items],
     "discount": 0.0,

@@ -32,8 +32,15 @@ def mock_product_repository(domain_products):
     return product_repository
 
 @pytest.fixture
-def client(mock_product_repository):
+def mock_order_repository(domain_orders):
+  order_repository = Mock()
+  order_repository.get_all = Mock(return_value=domain_orders)
+  return order_repository
+
+@pytest.fixture
+def client(mock_product_repository, mock_order_repository):
     app = create_app()
     app.container.product_repository.override(mock_product_repository)
+    app.container.order_repository.override(mock_order_repository)
 
     return TestClient(app)

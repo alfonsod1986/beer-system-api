@@ -1,11 +1,14 @@
 from dependency_injector import containers, providers
 from app.infrastructure.repositories.in_memory.product import ProductInMemoryRepository
+from app.infrastructure.repositories.in_memory.order import OrderInMemoryRepository
 from app.domain.use_cases.product.get_all import GetAllProductsUseCase
 from app.domain.use_cases.product.get_by_id import GetProductByIdUseCase
 from app.domain.use_cases.product.create import CreateProductUseCase
 from app.domain.use_cases.product.update import UpdateProductUseCase
 from app.domain.use_cases.product.delete import DeleteProductUseCase
+from app.domain.use_cases.order.get_all import GetAllOrdersUseCase
 from app.application.services.product import ProductService
+from app.application.services.order import OrderService
 
 class Container(containers.DeclarativeContainer):
   wiring_config = containers.WiringConfiguration(packages=["app.infrastructure.rest.fastapi.v1.routes"])
@@ -14,6 +17,11 @@ class Container(containers.DeclarativeContainer):
   product_repository = providers.Singleton(
     ProductInMemoryRepository,
     filepath="data/products.json",
+  )
+
+  order_repository = providers.Singleton(
+    OrderInMemoryRepository,
+    filepath="data/orders.json",
   )
 
   #Use Cases
@@ -43,6 +51,11 @@ class Container(containers.DeclarativeContainer):
     repository=product_repository,
   )
 
+  get_all_orders_use_case = providers.Factory(
+    GetAllOrdersUseCase,
+    repository=order_repository,
+  )
+
   #Services
   product_service = providers.Factory(
     ProductService,
@@ -51,4 +64,9 @@ class Container(containers.DeclarativeContainer):
     create_product_use_case=create_product_use_case,
     update_product_use_case=update_product_use_case,
     delete_product_use_case=delete_product_use_case,
+  )
+
+  order_service = providers.Factory(
+    OrderService,
+    get_all_orders_use_case=get_all_orders_use_case,
   )
