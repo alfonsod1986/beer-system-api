@@ -35,6 +35,7 @@ def mock_product_repository(domain_products):
 def mock_order_repository(domain_orders):
   order_repository = Mock()
   order_repository.get_all = Mock(return_value=domain_orders)
+  order_repository.get_by_id = Mock(side_effect=lambda id: next((o for o in domain_orders if o.id == id), None))
   return order_repository
 
 @pytest.fixture
