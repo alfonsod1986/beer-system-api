@@ -54,12 +54,12 @@ class RoundItemEntity:
     data_copy = data.copy()
 
     data_copy["items"] = [ProductItemEntity.from_dict(item) for item in data["items"]]
-    data_copy["created"] = datetime.strptime(data["created"], "%Y-%m-%d %H:%M:%S.%f")
+    data_copy["created"] = datetime.strptime(data["created"],"%Y-%m-%dT%H:%M:%S.%fZ")
     return cls(**data_copy)
   
   def to_dict(self) -> dict:
     return {
-      "created": self.created.strftime("%Y-%m-%d %H:%M:%S.%f"),
+      "created": self.created.strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
       "items": [item.to_dict() for item in self.items],
     }
 
@@ -82,13 +82,13 @@ class OrderEntity:
 
     data_copy["items"] = [OrderItemEntity.from_dict(item) for item in data["items"]]
     data_copy["rounds"] = [RoundItemEntity.from_dict(item) for item in data["rounds"]]
-    data_copy["created"] = datetime.strptime(data["created"], "%Y-%m-%d %H:%M:%S.%f")
+    data_copy["created"] = datetime.strptime(data["created"], "%Y-%m-%dT%H:%M:%S.%fZ")
     return cls(**data_copy)
   
   def to_dict(self) -> dict:
     return {
       "id": self.id,
-      "created": self.created.strftime("%Y-%m-%d %H:%M:%S.%f"),
+      "created": self.created.strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
       "paid": self.paid,
       "items": [item.to_dict() for item in self.items],
       "rounds": [r_item.to_dict() for r_item in self.rounds],
