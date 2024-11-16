@@ -4,8 +4,8 @@
     "created": "2024-11-15T05:53:42.900906Z",
     "paid": false,
     "items": [
-      { "name": "XX Lager", "price_per_unit": 15.99, "total": 159.9 },
-      { "name": "Heineken", "price_per_unit": 35.99, "total": 719.8 }
+      { "name": "XX Lager", "price_per_unit": 15.99, "quantity": 10, "total": 159.9 },
+      { "name": "Heineken", "price_per_unit": 35.99, "quantity": 20, "total": 719.8 }
     ],
     "rounds": [
       {
@@ -18,17 +18,17 @@
     ],
     "discount": 0.0,
     "tax_rate": 0.15,
-    "subtotal": 0.0,
-    "taxes": 0.0,
-    "total": 0.0
+    "subtotal": 879.7,
+    "taxes": 131.9,
+    "total": 1011.6
   },
   { 
     "id": 2,
     "created": "2024-11-15T05:53:42.900906Z",
-    "paid": false,
+    "paid": true,
     "items": [
-      { "name": "XX Lager", "price_per_unit": 15.99, "total": 159.9 },
-      { "name": "Heineken", "price_per_unit": 35.99, "total": 719.8 }
+      { "name": "XX Lager", "price_per_unit": 15.99, "quantity": 10, "total": 159.9 },
+      { "name": "Heineken", "price_per_unit": 35.99, "quantity": 20, "total": 719.8 }
     ],
     "rounds": [
       {
@@ -41,17 +41,17 @@
     ],
     "discount": 0.0,
     "tax_rate": 0.15,
-    "subtotal": 0.0,
-    "taxes": 0.0,
-    "total": 0.0
+    "subtotal": 879.7,
+    "taxes": 131.9,
+    "total": 1011.6
   },
   { 
     "id": 3,
     "created": "2024-11-15T05:53:42.900906Z",
     "paid": false,
     "items": [
-      { "name": "XX Lager", "price_per_unit": 15.99, "total": 159.9 },
-      { "name": "Heineken", "price_per_unit": 35.99, "total": 719.8 }
+      { "name": "XX Lager", "price_per_unit": 15.99, "quantity": 10, "total": 159.9 },
+      { "name": "Heineken", "price_per_unit": 35.99, "quantity": 20, "total": 719.8 }
     ],
     "rounds": [
       {
@@ -64,8 +64,8 @@
     ],
     "discount": 0.0,
     "tax_rate": 0.15,
-    "subtotal": 0.0,
-    "taxes": 0.0,
-    "total": 0.0
+    "subtotal": 879.7,
+    "taxes": 131.9,
+    "total": 1011.6
   }
 ]

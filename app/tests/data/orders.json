@@ -4,8 +4,8 @@
     "created": "2024-11-15T05:53:42.900906Z",
     "paid": false,
     "items": [
-      { "name": "XX Lager", "price_per_unit": 15.99, "total": 159.9 },
-      { "name": "Heineken", "price_per_unit": 35.99, "total": 719.8 }
+      { "name": "XX Lager", "price_per_unit": 15.99, "quantity": 10, "total": 159.9 },
+      { "name": "Heineken", "price_per_unit": 35.99, "quantity": 10, "total": 719.8 }
     ],
     "rounds": [
       {
@@ -27,8 +27,8 @@
     "created": "2024-11-15T05:53:42.900906Z",
     "paid": false,
     "items": [
-      { "name": "XX Lager", "price_per_unit": 15.99, "total": 159.9 },
-      { "name": "Heineken", "price_per_unit": 35.99, "total": 719.8 }
+      { "name": "XX Lager", "price_per_unit": 15.99, "quantity": 10, "total": 159.9 },
+      { "name": "Heineken", "price_per_unit": 35.99, "quantity": 10, "total": 719.8 }
     ],
     "rounds": [
       {
@@ -50,8 +50,8 @@
     "created": "2024-11-15T05:53:42.900906Z",
     "paid": false,
     "items": [
-      { "name": "XX Lager", "price_per_unit": 15.99, "total": 159.9 },
-      { "name": "Heineken", "price_per_unit": 35.99, "total": 719.8 }
+      { "name": "XX Lager", "price_per_unit": 15.99, "quantity": 10, "total": 159.9 },
+      { "name": "Heineken", "price_per_unit": 35.99, "quantity": 10, "total": 719.8 }
     ],
     "rounds": [
       {
