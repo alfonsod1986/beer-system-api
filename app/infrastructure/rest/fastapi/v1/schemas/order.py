@@ -5,6 +5,7 @@ from typing import Optional, List
 class OrderItem(BaseModel):
   name: str
   price_per_unit: PositiveFloat
+  quantity: PositiveInt
   total: PositiveFloat
 
 class ProductItem(BaseModel):

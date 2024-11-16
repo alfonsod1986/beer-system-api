@@ -17,6 +17,7 @@ def order_items():
     OrderItemEntity(
       name=f"Testing {random.randint(1, 100)}",
       price_per_unit=Price(random.randint(1, 100)),
+      quantity=Quantity(random.randint(1, 100)),
       total=Total(random.randint(1, 100)))
     for _ in range(10)]
 
@@ -46,6 +47,7 @@ def test_valid_order_item():
   item = OrderItemEntity(
     name="Testing",
     price_per_unit=Price(10),
+    quantity=Quantity(10),
     total=Total(100))
 
   assert item.name == "Testing"
@@ -63,12 +65,17 @@ def test_order_item_invalid_price(test_input, expected):
   assert str(exc_info.value) == expected
 
 def test_order_item_to_dict():
-  item = OrderItemEntity(name="Testing", price_per_unit=Price(10), total=Total(10))
+  item = OrderItemEntity(
+    name="Testing",
+    price_per_unit=Price(10),
+    quantity=Quantity(10),
+    total=Total(10))
   item_dict = item.to_dict()
 
   assert item_dict == {
     "name": "Testing",
     "price_per_unit": 10,
+    "quantity": 10,
     "total": 10
   }
 
@@ -76,6 +83,7 @@ def test_order_item_from_dict():
   item_dict = {
     "name": "Testing",
     "price_per_unit": 10,
+    "quantity": 10,
     "total": 10
   }
 
@@ -84,6 +92,7 @@ def test_order_item_from_dict():
   assert isinstance(item, OrderItemEntity) == True
   assert item.name == item_dict["name"]
   assert item.price_per_unit.value == item_dict["price_per_unit"]
+  assert item.quantity.value == item_dict["quantity"]
   assert item.total.value == item_dict["total"]
   assert item.to_dict() == item_dict
 

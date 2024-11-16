@@ -9,6 +9,7 @@ from app.domain.value_objects.quantity import Quantity
 class OrderItemEntity:
   name: str
   price_per_unit: Price
+  quantity: Quantity
   total: Total
 
   @classmethod
@@ -16,6 +17,7 @@ class OrderItemEntity:
     data_copy = data.copy()
 
     data_copy["price_per_unit"] = Price(data["price_per_unit"])
+    data_copy["quantity"] = Quantity(data["quantity"])
     data_copy["total"] = Total(data["total"])
     return cls(**data_copy)
   
@@ -23,6 +25,7 @@ class OrderItemEntity:
     return {
       "name": self.name,
       "price_per_unit": self.price_per_unit.value,
+      "quantity": self.quantity.value,
       "total": self.total.value
     }
 
