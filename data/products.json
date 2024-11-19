@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "XX Lager", "price": 15.99, "stock": 100 },
+  { "id": 2, "name": "Heineken", "price": 35.99, "stock": 100 },
+  { "id": 3, "name": "Corona", "price": 12.99, "stock": 50 },
+  { "id": 4, "name": "Tecate", "price": 17.99, "stock": 60 }
+]
